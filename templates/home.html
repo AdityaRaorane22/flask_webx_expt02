@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f8fdf8;
+            line-height: 1.6;
+        }
+
+        /* Section common styles */
+        section {
+            padding: 3rem 5%;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background-color: white;
+        }
+
+        h1, h2 {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #a5d6a7;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        strong {
+            color: #1b5e20;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, rgba(232, 245, 233, 0.8) 0%, rgba(200, 230, 201, 0.8) 100%);
+            text-align: center;
+            padding: 5rem 5%;
+            border-radius: 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2381c784' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E") repeat;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            margin-top: 0;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Profile Image */
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+        }
+
+        /* About section */
+        .about {
+            background-color: #f1f8e9;
+        }
+
+        /* Education section */
+        .education {
+            background-color: #f1f8e9;
+        }
+
+        .education-item {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px dashed #a5d6a7;
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .education-title {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .education-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-year {
+            color: #616161;
+            font-style: italic;
+        }
+
+        .education-score {
+            color: #1b5e20;
+            font-weight: 600;
+        }
+
+        /* Skills section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Projects section */
+        .projects ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .projects li {
+            background-color: #f1f8e9;
+            margin-bottom: 1rem;
+            padding: 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid #66bb6a;
+            transition: transform 0.3s ease;
+        }
+
+        .projects li:hover {
+            transform: translateX(5px);
+        }
+
+        .projects a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .projects a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact CTA section */
+        .contact-cta {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .contact-cta h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #2e7d32;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .skills-container {
+                gap: 0.7rem;
+            }
+            
+            .skill-card {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .education-details {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+        }
+    </style>
+
+    <section class="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>I'm a passionate Software Developer currently in my 3rd year at <strong>Vivekanand Education Society's Institute of Technology (VESIT)</strong>, specializing in <strong>Information Technology</strong>.</p>
+    </section>
+
+    <section class="about">
+        <h2>About Me</h2>
+        <p>With a keen interest in software development, AI, and web technologies, I love building efficient and scalable solutions. Whether it's <strong>full-stack development</strong>, <strong>machine learning</strong>, or <strong>competitive programming</strong>, I continuously explore and refine my technical skills.</p>
+    </section>
+
+    <section class="education">
+        <h2>Education</h2>
+        
+        <div class="education-item">
+            <div class="education-title">Vivekanand Education Society's Institute of Technology (VESIT)</div>
+            <div class="education-details">
+                <div class="education-year">2021 - Present</div>
+                <div class="education-score">Cummulative CGPA: 9.61</div>
+            </div>
+            <p>Bachelor of Technology, Information Technology</p>
+        </div>
+        
+        <div class="education-item">
+            <div class="education-title">Higher Secondary Education (12th)</div>
+            <div class="education-details">
+                <div class="education-year">2021</div>
+                <div class="education-score">91%</div>
+            </div>
+            <p>Science Stream with Computer Science</p>
+        </div>
+        
+        <div class="education-item">
+            <div class="education-title">Secondary Education (10th)</div>
+            <div class="education-details">
+                <div class="education-year">2019</div>
+                <div class="education-score">95%</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card">Python</div>
+            <div class="skill-card">Flask</div>
+            <div class="skill-card">MERN Stack.js</div>
+            <div class="skill-card">Machine Learning</div>
+            <div class="skill-card">Database (SQL, MongoDB)</div>
+            <div class="skill-card">Cloud Computing (AWS, Firebase)</div>
+        </div>
+    </section>
+
+    <section class="projects">
+        <h2>Featured Projects</h2>
+        <p>Here are some of the exciting projects I've worked on. Check out the <a href="{{ url_for('portfolio') }}">Portfolio</a> page for more details.</p>
+        <ul>
+            <li><strong>AI-Powered Interview Analyzer</strong> – Real-time facial expression and body language analysis for job interviews.</li>
+            <li><strong>Air Quality Monitoring App</strong> – A mobile app providing real-time air quality data using API integration.</li>
+            <li><strong>Parking Space Finder</strong> – A gamified mobile app to find and offer parking spots.</li>
+        </ul>
+    </section>
+
+    <section class="contact-cta">
+        <h2>Let's Connect!</h2>
+        <p>Interested in collaborating or hiring me? Feel free to reach out.</p>
+        <a href="{{ url_for('contact') }}" class="cta-button">Contact Me</a>
+    </section>
+{% endblock %}

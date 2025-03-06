@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .success-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 5px solid #4CAF50;
+        }
+        
+        h1 {
+            color: #2e7d32;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+        }
+        
+        .thank-you {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .message-details {
+            background-color: #f1f8e9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .message-details p {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .message-details p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .message-details strong {
+            color: #2e7d32;
+            font-weight: 500;
+        }
+        
+        .message-content {
+            border-left: 3px solid #a5d6a7;
+            padding-left: 1rem;
+            color: #555;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .success-icon {
+                font-size: 3rem;
+            }
+            
+            .thank-you {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h1>Success!</h1>
+        <p class="thank-you">Thank you, {{ name }}! Your message has been sent successfully.</p>
+        
+        <div class="message-details">
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Subject:</strong> {{ subject }}</p>
+            <p><strong>Message:</strong></p>
+            <p class="message-content">{{ message }}</p>
+        </div>
+        
+        <a href="{{ url_for('home') }}" class="back-button">Return to Home</a>
+    </div>
+{% endblock %}
